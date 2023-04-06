@@ -13,7 +13,7 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        
+
         // Validación
         $this->validate($request, [
             // Email obligatorio y validación de email
@@ -28,6 +28,8 @@ class LoginController extends Controller
         }
 
         // Redirecciona si el inicio de sesión es correcto
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index', [
+            'user' => auth()->user()->username
+        ]);
     }
 }
