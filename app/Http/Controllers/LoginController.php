@@ -28,8 +28,6 @@ class LoginController extends Controller
         }
 
         // Redirecciona si el inicio de sesión es correcto
-        return redirect()->route('posts.index', [
-            'user' => auth()->user()->username
-        ]);
+        return redirect()->route('posts.index',  auth()->user()->username);
     }
 }
