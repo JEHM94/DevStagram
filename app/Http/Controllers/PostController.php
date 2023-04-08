@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    // Proteger la ruta de usuarios no autenticados
+    // Proteger las rutas del controlador de usuarios no autenticados
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('show','index');
     }
 
     public function index(User $user)
@@ -71,5 +71,13 @@ class PostController extends Controller
 
 
         return redirect()->route('posts.index', auth()->user()->username);
+    }
+
+    public function show(User $user, Post $post)
+    {
+        return view('posts.show', [
+            'post' => $post,
+            'user' => $user
+        ]);
     }
 }

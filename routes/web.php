@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -23,20 +24,29 @@ Route::get('/', function () {
 });
 
 // Auth
+// Iniciar Sesión
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
-
+// Cerrar Sesión
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
-
+// Registrarse
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
 // Posts
+// Perfil del Usuario
 Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.index');
-
+// Crear Post
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
-
+// Mostrar todos los Posts
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+// Mostrar Post
+Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
+// Comentarios
+Route::post('/{user:username}/posts/{post}', [ComentarioController::class, 'store'])->name('comentarios.store');
+
+
+// Subida de Imagenes
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
 
