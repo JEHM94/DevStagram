@@ -16,8 +16,18 @@ class PostController extends Controller
 
     public function index(User $user)
     {
+        // Busca los Posts del Usuario
+        //$posts = Post::where('user_id', $user->id)->get();
+
+        // Para paginación
+        $posts = Post::where('user_id', $user->id)->paginate(20);
+        // Otra paginación más simple
+        //$posts = Post::where('user_id', $user->id)->simplePaginate(5);
+
+
         return view('dashboard', [
-            'user' => $user
+            'user' => $user,
+            'posts' => $posts
         ]);
     }
 
@@ -58,7 +68,7 @@ class PostController extends Controller
             'imagen' => $request->imagen,
             'user_id' => auth()->user()->id
         ]);
-        
+
 
         return redirect()->route('posts.index', auth()->user()->username);
     }

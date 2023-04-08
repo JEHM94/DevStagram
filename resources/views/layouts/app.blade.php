@@ -16,14 +16,14 @@
 
 <body class="bg-gray-100">
     <header class="p-5 border-b bg-white shadow">
-        <div class="container mx-auto flex justify-between items-center">
+        <div class="container mx-auto flex justify-between items-center flex-col gap-3 md:flex-row">
             <h1 class="text-3xl font-black">
                 DevStagram
             </h1>
 
             {{-- Verificación si el usuario está autenticado --}}
             @auth
-                <nav class="flex gap-2 items-center">
+                <nav class="flex gap-2 items-center w-full justify-between md:w-auto">
                     <a href="{{ route('posts.create') }}"
                         class="flex items-center gap-2 bg-white border p-2 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -47,7 +47,7 @@
 
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="font-bold uppercase text-gray-600 text-sm">
+                        <button type="submit" class="font-bold uppercase text-gray-600 text-sm border rounded p-2">
                             Cerrar Sesión
                         </button>
                     </form>
@@ -56,12 +56,12 @@
 
             {{-- Verificación si el usuario NO está autenticado --}}
             @guest
-                <nav class="flex gap-2 items-center">
-                    <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('login') }}">
+                <nav class="flex gap-2 items-center justify-between w-full md:w-auto">
+                    <a class="font-bold uppercase text-gray-600 text-sm border rounded p-2" href="{{ route('login') }}">
                         Login
                     </a>
 
-                    <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('register') }}">
+                    <a class="font-bold uppercase text-gray-600 text-sm border rounded p-2" href="{{ route('register') }}">
                         Crear cuenta
                     </a>
                 </nav>
