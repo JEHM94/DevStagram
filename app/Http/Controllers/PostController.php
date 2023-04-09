@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
     // Proteger las rutas del controlador de usuarios no autenticados
     public function __construct()
     {
-        $this->middleware('auth')->except('show','index');
+        $this->middleware('auth')->except('show', 'index');
     }
 
     public function index(User $user)
@@ -79,5 +80,22 @@ class PostController extends Controller
             'post' => $post,
             'user' => $user
         ]);
+    }
+
+    public function destroy(Post $post)
+    {
+        // Verifica si el usuario está autorizado a para eliminar el post
+        $this->authorize('delete', $post);
+
+        // Elimina el post
+        $post->delete();
+
+        // Elimina la Imagen del Post
+        $imagenPath = public_path('uploads/' . $post->imagen);
+
+        if (File::exists($imagenPath)) unlink($imagenPath);
+
+
+        return redirect()->route('posts.index', auth()->user()->username);
     }
 }

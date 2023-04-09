@@ -6,7 +6,7 @@
 
 @section('contenido')
     <div class="container mx-auto md:flex">
-        <div class="md:w-1/2 bg-white m-5">
+        <div class="md:w-1/2 bg-white m-5 pb-5">
             <img class="" src="{{ asset('uploads') . '/' . $post->imagen }}" alt="Imagen del Post {{ $post->titulo }}">
 
             <div class="p-3">
@@ -21,11 +21,22 @@
                 <p class="text-sm text-gray-600">
                     {{ $post->created_at->diffForHumans() }}
                 </p>
-                <p class="my-5">
+                <p class="mt-5">
                     {{ $post->descripcion }}
                 </p>
-
             </div>
+
+            @auth
+                @if ($post->user_id === auth()->user()->id)
+                    <form method="POST" action="{{ route('posts.destroy', $post) }}" class="p-3">
+                        @method('DELETE')
+                        @csrf
+                        <input type="submit" value="Eliminar Publicación"
+                            class="bg-red-500 hover:bg-red-600 p-2 rounded text-white font-bold mt-4 cursor-pointer">
+                    </form>
+                @endif
+            @endauth
+
         </div>
 
         <div class="md:w-1/2 m-5">
