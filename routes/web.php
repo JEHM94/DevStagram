@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\ImagenController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PostController;
@@ -33,6 +34,7 @@ Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
+
 // Posts
 // Perfil del Usuario
 Route::get('/{user:username}', [PostController::class, 'index'])->name('posts.index');
@@ -49,6 +51,12 @@ Route::post('/{user:username}/posts/{post}', [ComentarioController::class, 'stor
 // Eliminar el Post
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
-
 // Subida de Imagenes
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
+
+
+// Likes
+// Guarda el Like
+Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
+// Elimina el Like
+Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('posts.likes.destroy');
