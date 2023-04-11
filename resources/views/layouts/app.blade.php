@@ -7,7 +7,7 @@
 
     {{-- Para cargar hojas de estilo adicionales --}}
     @stack('styles')
-    
+
     <title>DevStagram - @yield('titulo')</title>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -17,15 +17,26 @@
 <body class="bg-gray-100">
     <header class="p-5 border-b bg-white shadow">
         <div class="container mx-auto flex justify-between items-center flex-col gap-3 md:flex-row">
-            <h1 class="text-3xl font-black">
-                DevStagram
-            </h1>
+            <a href="/">
+                <h1 class="text-3xl font-black">
+                    DevStagram
+                </h1>
+            </a>
+
 
             {{-- Verificación si el usuario está autenticado --}}
             @auth
                 <nav class="flex gap-2 items-center w-full justify-between md:w-auto">
+
+                    <a class="font-bold text-gray-600 text-sm" href="{{ route('posts.index', auth()->user()->username) }}">
+                        Hola:
+                        <span class="font-normal whitespace-nowrap">
+                            {{ auth()->user()->username }}
+                        </span>
+                    </a>
+
                     <a href="{{ route('posts.create') }}"
-                        class="flex items-center gap-2 bg-white border p-2 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer">
+                        class="order-first md:order-none h-9 flex items-center gap-1 text-sm bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold p-2 text-white rounded-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -33,21 +44,13 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
                         </svg>
-
-
                         Crear
-                    </a>
-
-                    <a class="font-bold text-gray-600 text-sm" href="{{ route('posts.index', auth()->user()->username) }}">
-                        Hola:
-                        <span class="font-normal">
-                            {{ auth()->user()->username }}
-                        </span>
                     </a>
 
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="font-bold uppercase text-gray-600 text-sm border rounded p-2">
+                        <button type="submit"
+                            class="h-auto md:h-9 text-sm p-2 bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold text-white rounded-lg">
                             Cerrar Sesión
                         </button>
                     </form>
