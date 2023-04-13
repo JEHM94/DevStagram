@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 
 class ComentarioController extends Controller
 {
-    public function store(Request $request, User $user, Post $post)
+    /// *********** NOT IN USE, DELETE  *************/////
+    // Moved to ComentarioPost
+    
+    /* public function store(Request $request, User $user, Post $post)
     {
         // Validar
         $this->validate($request, [
@@ -25,5 +28,5 @@ class ComentarioController extends Controller
 
         // Redirecciona de vuelta
         return back()->with('mensaje', 'Comentario enviado');
-    }
+    } */
 }

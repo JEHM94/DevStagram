@@ -7,7 +7,10 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
-{ //****************  NOT IN USE, DELETE***** */
+{ 
+    //****************  NOT IN USE, DELETE***** */
+    // Moved to LikePost
+
     /* public function store(Request $request, Post $post)
     {
         $post->likes()->create([
