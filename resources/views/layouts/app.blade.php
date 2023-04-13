@@ -12,6 +12,8 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 
+    @livewireStyles
+
 </head>
 
 <body class="bg-gray-100">
@@ -58,11 +60,13 @@
             {{-- Verificación si el usuario NO está autenticado --}}
             @guest
                 <nav class="flex gap-2 items-center justify-between w-full md:w-auto">
-                    <a class="h-auto md:h-9 text-sm p-2 bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold text-white rounded-lg" href="{{ route('login') }}">
+                    <a class="h-auto md:h-9 text-sm p-2 bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold text-white rounded-lg"
+                        href="{{ route('login') }}">
                         Login
                     </a>
 
-                    <a class="h-auto md:h-9 text-sm p-2 bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold text-white rounded-lg" href="{{ route('register') }}">
+                    <a class="h-auto md:h-9 text-sm p-2 bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold text-white rounded-lg"
+                        href="{{ route('register') }}">
                         Crear cuenta
                     </a>
                 </nav>
@@ -81,6 +85,8 @@
     <footer class="mt-10 text-center p-5 text-gray-500 font-bold uppercase">
         DevStagram - Todos los derechos reservados {{ now()->year }}
     </footer>
+
+    @livewireScripts
 </body>
 
 </html>
