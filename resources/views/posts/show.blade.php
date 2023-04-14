@@ -9,7 +9,7 @@
         <div class="md:w-1/2 bg-white m-5 pb-5">
             <img class="" src="{{ asset('uploads') . '/' . $post->imagen }}" alt="Imagen del Post {{ $post->titulo }}">
 
-            <div class="flex justify-between items-center p-3">
+            <div class="flex justify-between items-center mt-2">
                 @livewire('like-post', ['post' => $post])
 
                 @livewire('total-comentarios', ['post' => $post])

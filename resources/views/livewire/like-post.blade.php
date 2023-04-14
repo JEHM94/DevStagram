@@ -1,5 +1,5 @@
 <div>
-    <div class="flex items-center gap-2 mt-2">
+    <div class="flex items-center">
         <button @auth wire:click="like" @endauth @guest class="cursor-default" @endguest>
             <svg xmlns="http://www.w3.org/2000/svg" fill="{{ $isLiked ? 'red' : 'none' }}" viewBox="0 0 24 24"
                 stroke-width="{{ $isLiked ? '.5' : '1.5' }}" stroke="currentColor" class="w-6 h-6">
