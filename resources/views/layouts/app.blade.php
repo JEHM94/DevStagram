@@ -9,11 +9,12 @@
     @stack('styles')
 
     <title>DevStagram - @yield('titulo')</title>
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
+    {{-- @vite('resources/css/app.css')
+    @vite('resources/js/app.js') --}}
 
     @livewireStyles
 
+    <link rel="stylesheet" href="/build/assets/app-1f8632ba.css">
 </head>
 
 <body class="bg-gray-100">
@@ -87,6 +88,7 @@
     </footer>
 
     @livewireScripts
+    <script src="/build/assets/app-cf77d8ea.js"></script>
 </body>
 
 </html>
