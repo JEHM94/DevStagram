@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', HomeController::class)->name('home');
+Route::get('/explore', [HomeController::class, 'explore'])->name('home.explore');
 
 // Auth
 // Iniciar Sesión

@@ -21,7 +21,21 @@ class HomeController extends Controller
         $posts = Post::whereIn('user_id', $followingIds)->latest()->paginate(20);
 
         return view('home', [
-            'posts' => $posts
+            'posts' => $posts,
+            'explore' => false
+        ]);
+    }
+
+    public function explore()
+    {
+        // Obtiene los ids de los usuarios que sigue
+        $followingIds = auth()->user()->followings->pluck('id')->toArray();
+        // Busca los Posts de los usuarios que sigue
+        $posts = Post::whereNotIn('user_id', $followingIds)->whereNot('user_id', auth()->user()->id)->latest()->paginate(20);
+
+        return view('home', [
+            'posts' => $posts,
+            'explore' => true
         ]);
     }
 }
