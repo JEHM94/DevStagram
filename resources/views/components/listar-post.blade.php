@@ -11,7 +11,7 @@
                         alt="Imagen del Post {{ $post->titulo }}">
 
                     <div class="p-3 text-gray-600">
-                        <p class="text-black font-bold">
+                        <p class="text-black font-bold capitalize">
                             {{ $post->user->username }}
                         </p>
 

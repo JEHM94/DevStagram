@@ -34,7 +34,7 @@
         @if ($post->comentarios->count())
             @foreach ($post->comentarios as $comentario)
                 <div class="p-5 border-gray-300 border-b">
-                    <a href="{{ route('posts.index', $comentario->user) }}" class="font-bold">
+                    <a href="{{ route('posts.index', $comentario->user) }}" class="font-bold capitalize">
                         {{ $comentario->user->username }}
                     </a>
 

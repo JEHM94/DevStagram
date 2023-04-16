@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 
 class FollowerController extends Controller
 {
-    public function store(User $user)
+    // ********** NOT IN USE, DELETE ***********//
+    // Moved to FollowUser
+    /* public function store(User $user)
     {
         // Verifica si el usuario autenticado aún no sigue al usuario del perfil
         if (!$user->isFollower(auth()->user()))
@@ -22,5 +24,5 @@ class FollowerController extends Controller
         $user->followers()->detach(auth()->user()->id);
 
         return back();
-    }
+    } */
 }

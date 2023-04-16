@@ -4,6 +4,11 @@
     Perfil de Usuario
 @endsection
 
+@push('styles')
+    {{-- Modal  --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+@endpush
+
 @section('contenido')
     <div class="flex justify-center">
         <div class="w-full md:w-8/12 lg:w-6/12 flex flex-col justify-center items-center md:flex-row">
@@ -16,7 +21,7 @@
 
             <div class="md:w-8/12 lg:w-6/12 px-5 flex flex-col items-center md:justify-center md:items-start py-10">
                 <div class="flex items-center gap-2">
-                    <p class="text-gray-700 text-2xl">{{ $user->username }}</p>
+                    <p class="text-gray-700 text-2xl capitalize">{{ $user->username }}</p>
 
                     @auth
                         @if ($user->id === auth()->user()->id)
@@ -32,41 +37,7 @@
                     @endauth
                 </div>
 
-                <p class="text-gray-800 text-sm mb-3 font-bold mt-5">
-                    {{ $user->followers->count() }}
-                    <span class="font-normal">@choice('Seguidor|Seguidores', $user->followers->count())</span>
-                </p>
-
-                <p class="text-gray-800 text-sm mb-3 font-bold">
-                    {{ $user->followings->count() }}
-                    <span class="font-normal">Siguiendo</span>
-                </p>
-
-                <p class="text-gray-800 text-sm mb-3 font-bold">
-                    {{ $user->posts->count() }}
-                    <span class="font-normal">@choice('Publicación|Publicaciones', $user->posts->count())</span>
-                </p>
-
-                @auth()
-                    @if ($user->id !== auth()->user()->id)
-                        @if (!$user->isFollower(auth()->user()))
-                            <form action="{{ route('users.follow', $user) }}" method="POST">
-                                @csrf
-                                <input type="submit"
-                                    class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer  font-bold px-3 py-1 text-white rounded-lg text-sm"
-                                    value="Seguir">
-                            </form>
-                        @else
-                            <form action="{{ route('users.unfollow', $user) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input type="submit"
-                                    class="bg-red-600 hover:bg-red-700 transition-colors cursor-pointer  font-bold px-3 py-1 text-white rounded-lg text-sm"
-                                    value="Dejar de Seguir">
-                            </form>
-                        @endif
-                    @endif
-                @endauth
+                @livewire('follow-user', ['user' => $user])
 
             </div>
         </div>
@@ -77,6 +48,11 @@
         <h2 class="text-4xl text-center font-black my-10">Publicaciones</h2>
 
         <x-listar-post :posts="$posts" />
-        
+
     </section>
 @endsection
+
+@push('scripts')
+    {{-- Modal  --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+@endpush

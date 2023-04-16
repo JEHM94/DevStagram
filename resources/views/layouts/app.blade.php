@@ -30,7 +30,7 @@
 
                     <a class="font-bold text-gray-600 text-sm" href="{{ route('posts.index', auth()->user()->username) }}">
                         Hola:
-                        <span class="font-normal whitespace-nowrap">
+                        <span class="font-normal whitespace-nowrap capitalize">
                             {{ auth()->user()->username }}
                         </span>
                     </a>
@@ -87,6 +87,7 @@
     </footer>
 
     @livewireScripts
+    @stack('scripts')
 </body>
 
 </html>
